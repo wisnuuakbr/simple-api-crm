@@ -12,7 +12,7 @@ Route::middleware(JwtMiddleware::class)->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
     // Routes profile
-    Route::middleware('role:manager')->put('profile', [AuthController::class, 'updateProfile']);
+    Route::middleware(['auth:api', 'role:manager'])->put('profile', [AuthController::class, 'updateProfile']);
 
     // Routes company
     Route::middleware('role:super admin')->group(function () {
